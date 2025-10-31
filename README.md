@@ -159,7 +159,20 @@ The INPUT agent should be able to show the generated file as an icon to download
 * testing with pytest
 
 ## Example data
-
+The input prompt is " create a cert for anna kowalska volunteer. Additional info : she is active team member. did all of the onboarding process. she did XXX campaing and is a main coordinator of Instagram""
+The json file for this data will look like this
+{
+		name Anna
+		surname Kowalska
+		start date 1.01.2021 (from the Excel file)
+		end date 3.06.2022 (from the Excel file)
+		team Marketing Masters (from the Excel file)
+		main tasks coordination of Instagram page, preparing content, doing graphics (from the Excel file)
+		main project that person was involved in, XXX campaing, main coordinator (from additional info)
+		engagement in the on-boarding process, active,(from additional info)
+	}gvv
+this file goes or the MCP server and send it through the cert process.
+yhd mmmmmcmmmmmg
 
 ## Prompts
 1. Input prompt
