@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ZGRED - Generator Dokumentów NGO</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header -->
+      <header class="header">
+        <div class="logo">
+          <h1>ZGRED</h1>
+          <p class="tagline">Generator Dokumentów NGO</p>
+        </div>
+      </header>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <!-- Document Type Selection -->
+        <section class="card">
+          <h2>Wybierz typ dokumentu</h2>
+          <div class="document-types">
+            <button class="doc-type-btn active" data-type="references">
+              <span class="icon">📄</span>
+              <span class="label">Referencje</span>
+            </button>
+            <button class="doc-type-btn" data-type="cert">
+              <span class="icon">📜</span>
+              <span class="label">Certyfikat</span>
+            </button>
+            <button class="doc-type-btn" data-type="internship">
+              <span class="icon">📋</span>
+              <span class="label">Staż/Praktyki</span>
+            </button>
+          </div>
+        </section>
+
+        <!-- Volunteer Search -->
+        <section class="card">
+          <h2>Dane wolontariusza</h2>
+          <div class="search-section">
+            <div class="form-group">
+              <label for="volunteerSearch">Wyszukaj wolontariusza</label>
+              <div class="search-wrapper">
+                <input
+                  type="text"
+                  id="volunteerSearch"
+                  placeholder="Wpisz imię i nazwisko..."
+                  autocomplete="off"
+                />
+                <button type="button" id="searchBtn" class="btn btn-secondary">
+                  Szukaj
+                </button>
+              </div>
+              <div id="searchResults" class="search-results"></div>
+            </div>
+          </div>
+
+          <!-- Volunteer Info Display -->
+          <div id="volunteerInfo" class="volunteer-info hidden">
+            <div class="info-grid">
+              <div class="info-item">
+                <label>Imię i nazwisko</label>
+                <span id="displayName">-</span>
+              </div>
+              <div class="info-item">
+                <label>Zespół</label>
+                <span id="displayTeam">-</span>
+              </div>
+              <div class="info-item">
+                <label>Data rozpoczęcia</label>
+                <span id="displayStartDate">-</span>
+              </div>
+              <div class="info-item">
+                <label>Data zakończenia</label>
+                <span id="displayEndDate">-</span>
+              </div>
+              <div class="info-item">
+                <label>Status</label>
+                <span id="displayStatus">-</span>
+              </div>
+              <div class="info-item">
+                <label>Główne zadania</label>
+                <span id="displayTasks">-</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Additional Information -->
+        <section class="card">
+          <h2>Dodatkowe informacje</h2>
+          <p class="hint" id="additionalInfoHint">
+            Podaj dodatkowe informacje o wolontariuszu, które zostaną
+            wykorzystane do wygenerowania dokumentu.
+          </p>
+          <div class="form-group">
+            <label for="additionalInfo">Dodatkowe informacje</label>
+            <textarea
+              id="additionalInfo"
+              rows="8"
+              placeholder="Wpisz informacje o projektach, osiągnięciach, zaangażowaniu, cechach charakteru..."
+            ></textarea>
+          </div>
+        </section>
+
+        <!-- Generate Button -->
+        <section class="actions">
+          <button
+            type="button"
+            id="generateBtn"
+            class="btn btn-primary btn-large"
+            disabled
+          >
+            <span class="btn-icon">📄</span>
+            Generuj dokument
+          </button>
+        </section>
+
+        <!-- Status/Result -->
+        <section id="resultSection" class="card result-section hidden">
+          <h2>Wynik</h2>
+          <div id="resultContent"></div>
+        </section>
+      </main>
+
+      <!-- Volunteers List Modal -->
+      <div id="volunteersModal" class="modal hidden">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2>Lista wolontariuszy</h2>
+            <button class="modal-close" id="closeModal">&times;</button>
+          </div>
+          <div class="modal-body">
+            <input
+              type="text"
+              id="modalSearch"
+              placeholder="Filtruj listę..."
+              class="modal-search"
+            />
+            <div id="volunteersList" class="volunteers-list"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <p>ZGRED &copy; 2025 - Generator Dokumentów NGO dla LEVEL UP</p>
+        <button type="button" id="showAllVolunteers" class="btn btn-link">
+          Pokaż wszystkich wolontariuszy
+        </button>
+      </footer>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay hidden">
+      <div class="loading-spinner"></div>
+      <p>Generowanie dokumentu...</p>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

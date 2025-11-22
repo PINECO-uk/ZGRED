@@ -197,3 +197,83 @@ yhd mmmmmcmmmmmg
 
 1. Input prompt
 2. task prompts
+
+---
+
+## Installation & Usage
+
+### Prerequisites
+
+- Node.js 18+
+- Ollama running on `http://host.docker.internal:11434` (optional, falls back to defaults)
+
+### Install
+
+```bash
+npm install
+```
+
+### Run the CLI Chat Interface
+
+```bash
+# Start interactive chat mode
+npm run chat
+
+# Or run directly
+node src/cli.js chat
+```
+
+### Generate Documents Directly
+
+```bash
+# Generate a reference
+node src/cli.js generate references -n Anna -s Kowalska -i "Active team member"
+
+# Generate a certificate
+node src/cli.js generate cert -n Jan -s Nowak -i "Led the API project"
+
+# Generate an internship document
+node src/cli.js generate internship -n Maria -s Wisniewska -i "Met all requirements"
+```
+
+### Initialize Sample Data
+
+```bash
+node src/cli.js init
+```
+
+### Run the MCP Server
+
+```bash
+npm run server
+# or
+node src/mcp-server.js
+```
+
+### Run Tests
+
+```bash
+npm test
+```
+
+## Project Structure
+
+```
+.
+├── src/
+│   ├── index.js          # Main entry point
+│   ├── cli.js            # CLI chat interface
+│   ├── config.js         # Configuration settings
+│   ├── excel-handler.js  # Excel data reader
+│   ├── llm-handler.js    # Ollama LLM integration
+│   ├── mcp-server.js     # MCP server with tools
+│   ├── models.js         # Zod data models
+│   ├── pdf-generator.js  # PDF document generator
+│   └── task-processor.js # Task processing logic
+├── tests/
+│   └── models.test.js    # Model tests
+├── data/                 # Excel employee data
+├── output/               # Generated PDFs
+├── templates/            # PDF templates
+└── package.json          # Project configuration
+```
