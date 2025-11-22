@@ -88,4 +88,6 @@ USER root
 RUN chmod +x /usr/local/bin/init-firewall.sh && \
   echo "node ALL=(root) NOPASSWD: /usr/local/bin/init-firewall.sh" > /etc/sudoers.d/node-firewall && \
   chmod 0440 /etc/sudoers.d/node-firewall
+
+RUN git config --global user.name "ania-pineco" && git config --global user.email 'pineco.uk@gmail.com'
 USER node
