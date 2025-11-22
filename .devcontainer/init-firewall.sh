@@ -40,6 +40,10 @@ iptables -A OUTPUT -o lo -j ACCEPT
 # Create ipset with CIDR support
 ipset create allowed-domains hash:net
 
+# Temporarily allow all outbound HTTPS to fetch GitHub IPs and resolve domains
+iptables -A OUTPUT -p tcp --dport 443 -j ACCEPT
+iptables -A INPUT -p tcp --sport 443 -m state --state ESTABLISHED -j ACCEPT
+
 # Fetch GitHub meta information and aggregate + add their IP ranges
 echo "Fetching GitHub IP ranges..."
 gh_ranges=$(curl -s https://api.github.com/meta)
@@ -100,9 +104,22 @@ fi
 HOST_NETWORK=$(echo "$HOST_IP" | sed "s/\.[0-9]*$/.0\/24/")
 echo "Host network detected as: $HOST_NETWORK"
 
+# Also resolve and add host.docker.internal for services like Ollama
+HOST_DOCKER_INTERNAL=$(getent hosts host.docker.internal | awk '{print $1}' || echo "")
+if [ -n "$HOST_DOCKER_INTERNAL" ]; then
+    echo "Resolved host.docker.internal to: $HOST_DOCKER_INTERNAL"
+    ipset add allowed-domains "$HOST_DOCKER_INTERNAL" 2>/dev/null || echo "host.docker.internal IP already in allowed set"
+else
+    echo "Warning: Could not resolve host.docker.internal"
+fi
+
 # Set up remaining iptables rules
 iptables -A INPUT -s "$HOST_NETWORK" -j ACCEPT
 iptables -A OUTPUT -d "$HOST_NETWORK" -j ACCEPT
+
+# Now remove the temporary HTTPS rules before setting restrictive policies
+iptables -D OUTPUT -p tcp --dport 443 -j ACCEPT
+iptables -D INPUT -p tcp --sport 443 -m state --state ESTABLISHED -j ACCEPT
 
 # Set default policies to DROP first
 iptables -P INPUT DROP
