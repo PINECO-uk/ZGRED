@@ -187,9 +187,16 @@ function drawWrappedText(page, text, x, y, options) {
  * @returns {Promise<string>} - Output path
  */
 export async function generateReferences(data) {
+  console.log('[PDF-REF] Generating references PDF...');
+  console.log(`[PDF-REF] Employee: ${data.name} ${data.surname}`);
+  console.log(`[PDF-REF] Reference text length: ${data.referenceText ? data.referenceText.length : 0} chars`);
+
   const filename = generateFilename('referencje', data.surname, data.name);
   const outputPath = join(config.outputDir, filename);
   mkdirSync(config.outputDir, { recursive: true });
+
+  console.log(`[PDF-REF] Output filename: ${filename}`);
+  console.log('[PDF-REF] Creating document with background...');
 
   const { pdfDoc, page, font, boldFont } = await createDocumentWithBackground();
   const { height } = page.getSize();
@@ -197,6 +204,7 @@ export async function generateReferences(data) {
   let y = height - 150; // Start below header area
 
   // Title
+  console.log('[PDF-REF] Adding title...');
   page.drawText('REFERENCJE', {
     x: 220,
     y,
@@ -205,12 +213,12 @@ export async function generateReferences(data) {
     color: rgb(0, 0, 0),
   });
 
-  // Place and date - right side, under title
+  // Place and date - right side, under title (0.5 cm lower)
   const dateText = `Łódź, ${formatDate()}`;
   const dateWidth = font.widthOfTextAtSize(dateText, 11);
   page.drawText(dateText, {
     x: 525 - dateWidth,
-    y: y - 5,
+    y: y - 19,
     size: 11,
     font,
     color: rgb(0, 0, 0),
@@ -218,6 +226,7 @@ export async function generateReferences(data) {
   y -= 50;
 
   // Employee info
+  console.log('[PDF-REF] Adding employee info fields...');
   const drawField = (label, value) => {
     page.drawText(label, { x: 70, y, size: 11, font: boldFont, color: rgb(0, 0, 0) });
     y = drawWrappedText(page, value || '-', 200, y, { font, size: 11, maxWidth: 350 });
@@ -233,12 +242,28 @@ export async function generateReferences(data) {
 
   // Reference text - one joined paragraph from AI
   if (data.referenceText && data.referenceText.trim() !== '') {
+    console.log(`[PDF-REF] Adding reference text (${data.referenceText.length} chars)...`);
     y = drawWrappedText(page, data.referenceText, 70, y, { font, size: 11, maxWidth: 470, lineHeight: 16 });
+  } else {
+    console.log('[PDF-REF] WARNING: No reference text to add - field is empty!');
   }
 
+  // "Z poważaniem," in bottom right corner (1 cm from edge)
+  console.log('[PDF-REF] Adding signature...');
+  const regards = 'Z poważaniem,';
+  const regardsWidth = font.widthOfTextAtSize(regards, 11);
+  page.drawText(regards, {
+    x: 525 - regardsWidth,
+    y: 28.35,
+    size: 11,
+    font,
+    color: rgb(0, 0, 0),
+  });
+
+  console.log('[PDF-REF] Saving PDF...');
   const pdfBytes = await pdfDoc.save();
   writeFileSync(outputPath, pdfBytes);
-  console.log(`Wygenerowano PDF referencji: ${outputPath}`);
+  console.log(`[PDF-REF] ✓ PDF saved: ${outputPath}`);
   return outputPath;
 }
 
@@ -249,9 +274,16 @@ export async function generateReferences(data) {
  * @returns {Promise<string>} - Output path
  */
 export async function generateCert(data) {
+  console.log('[PDF-CERT] Generating certificate PDF...');
+  console.log(`[PDF-CERT] Employee: ${data.name} ${data.surname}`);
+  console.log(`[PDF-CERT] Additional description length: ${data.additionalDescription ? data.additionalDescription.length : 0} chars`);
+
   const filename = generateFilename('certyfikat', data.surname, data.name);
   const outputPath = join(config.outputDir, filename);
   mkdirSync(config.outputDir, { recursive: true });
+
+  console.log(`[PDF-CERT] Output filename: ${filename}`);
+  console.log('[PDF-CERT] Creating document with background...');
 
   const { pdfDoc, page, font, boldFont } = await createDocumentWithBackground();
   const { width, height } = page.getSize();
@@ -269,12 +301,12 @@ export async function generateCert(data) {
     color: rgb(0, 0, 0),
   });
 
-  // Place and date - right side, under title
+  // Place and date - right side, under title (0.5 cm lower)
   const dateText = `Łódź, ${formatDate()}`;
   const dateWidth = font.widthOfTextAtSize(dateText, 11);
   page.drawText(dateText, {
     x: width - 70 - dateWidth,
-    y: y - 5,
+    y: y - 19,
     size: 11,
     font,
     color: rgb(0, 0, 0),
@@ -320,12 +352,28 @@ export async function generateCert(data) {
 
   // Additional description from Ollama (2 sentences based on additional info)
   if (data.additionalDescription && data.additionalDescription.trim() !== '') {
+    console.log(`[PDF-CERT] Adding additional description (${data.additionalDescription.length} chars)...`);
     y = drawWrappedText(page, data.additionalDescription, 70, y, { font, size: 12, maxWidth: 470, lineHeight: 18 });
+  } else {
+    console.log('[PDF-CERT] WARNING: No additional description to add - field is empty!');
   }
 
+  // "Z poważaniem," in bottom right corner (1 cm from edge)
+  console.log('[PDF-CERT] Adding signature...');
+  const regards = 'Z poważaniem,';
+  const regardsWidth = font.widthOfTextAtSize(regards, 11);
+  page.drawText(regards, {
+    x: width - 70 - regardsWidth,
+    y: 28.35,
+    size: 11,
+    font,
+    color: rgb(0, 0, 0),
+  });
+
+  console.log('[PDF-CERT] Saving PDF...');
   const pdfBytes = await pdfDoc.save();
   writeFileSync(outputPath, pdfBytes);
-  console.log(`Wygenerowano PDF certyfikatu: ${outputPath}`);
+  console.log(`[PDF-CERT] ✓ PDF saved: ${outputPath}`);
   return outputPath;
 }
 
@@ -335,9 +383,16 @@ export async function generateCert(data) {
  * @returns {Promise<string>} - Output path
  */
 export async function generateInternship(data) {
+  console.log('[PDF-INT] Generating internship PDF...');
+  console.log(`[PDF-INT] Employee: ${data.name} ${data.surname}`);
+  console.log(`[PDF-INT] Grade: ${data.grade || 'Not specified'}`);
+
   const filename = generateFilename('staz', data.surname, data.name);
   const outputPath = join(config.outputDir, filename);
   mkdirSync(config.outputDir, { recursive: true });
+
+  console.log(`[PDF-INT] Output filename: ${filename}`);
+  console.log('[PDF-INT] Creating document with background...');
 
   const { pdfDoc, page, font, boldFont } = await createDocumentWithBackground();
   const { width, height } = page.getSize();
@@ -355,12 +410,12 @@ export async function generateInternship(data) {
     color: rgb(0, 0, 0),
   });
 
-  // Place and date - right side, under title
+  // Place and date - right side, under title (0.5 cm lower)
   const dateText = `Łódź, ${formatDate()}`;
   const dateWidth = font.widthOfTextAtSize(dateText, 11);
   page.drawText(dateText, {
     x: width - 70 - dateWidth,
-    y: y - 5,
+    y: y - 19,
     size: 11,
     font,
     color: rgb(0, 0, 0),
@@ -383,16 +438,18 @@ export async function generateInternship(data) {
   y -= 20;
 
   // Evaluation sections
+  console.log('[PDF-INT] Adding evaluation sections...');
   const sections = [
-    { title: 'Główne zadania i obowiązki:', content: data.mainTasks },
-    { title: 'Udział w projektach:', content: data.mainProjects },
-    { title: 'Zaangażowanie w onboarding:', content: data.onboardingEngagement },
-    { title: 'Kluczowe osiągnięcia:', content: data.achievements },
-    { title: 'Cechy charakteru:', content: data.characteristics },
-    { title: 'Porównanie z wymaganiami uczelni:', content: data.requirementsComparison },
+    { title: 'Główne zadania praktykanta/stażysty:', content: data.mainTasks },
+    { title: 'Opis praktyk:', content: data.internshipDescription },
+    { title: 'Ogólne informacje o działaniach:', content: data.generalInformation },
+    { title: 'Ocena:', content: data.evaluation },
   ];
 
   for (const section of sections) {
+    const isEmpty = !section.content || section.content.trim() === '' || section.content === '-';
+    console.log(`[PDF-INT]   - ${section.title} ${isEmpty ? '(empty)' : section.content.length + ' chars'}`);
+
     page.drawText(section.title, { x: 70, y, size: 11, font: boldFont, color: rgb(0, 0, 0) });
     y -= 16;
     y = drawWrappedText(page, section.content || '-', 70, y, { font, size: 10, maxWidth: 470, lineHeight: 13 });
@@ -400,14 +457,29 @@ export async function generateInternship(data) {
 
     // Check if we need to add a new page
     if (y < 100) {
+      console.log('[PDF-INT] Adding new page...');
       pdfDoc.addPage([595.28, 841.89]);
       y = 750;
     }
   }
 
+  // "Z poważaniem," in bottom right corner (1 cm from edge) on first page
+  console.log('[PDF-INT] Adding signature...');
+  const firstPage = pdfDoc.getPages()[0];
+  const regards = 'Z poważaniem,';
+  const regardsWidth = font.widthOfTextAtSize(regards, 11);
+  firstPage.drawText(regards, {
+    x: width - 70 - regardsWidth,
+    y: 28.35,
+    size: 11,
+    font,
+    color: rgb(0, 0, 0),
+  });
+
+  console.log('[PDF-INT] Saving PDF...');
   const pdfBytes = await pdfDoc.save();
   writeFileSync(outputPath, pdfBytes);
-  console.log(`Wygenerowano PDF stażu: ${outputPath}`);
+  console.log(`[PDF-INT] ✓ PDF saved: ${outputPath}`);
   return outputPath;
 }
 
