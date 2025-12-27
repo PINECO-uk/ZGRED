@@ -16,12 +16,12 @@ export const config = {
   dataDir: join(rootDir, "data"),
   templatesDir: join(rootDir, "templates"),
   outputDir: join(rootDir, "output"),
-  excelFile: join(rootDir, "data", "dane_treningowe_wolontariat_LEVELUP.xlsx"),
+  excelFile: join(rootDir, "data", "dane_treningowe_wolontariat_LEVELUP_update.xlsx"),
 
-  // Ollama settings (use host.docker.internal for Docker environments)
+  // Ollama settings (use localhost:11434 for Ollama on Windows host)
   ollamaBaseUrl:
-    process.env.OLLAMA_BASE_URL || "http://host.docker.internal:11434",
-  ollamaModel: process.env.OLLAMA_MODEL || "gemma3:12b",
+    process.env.OLLAMA_BASE_URL || "http://localhost:11434",
+  ollamaModel: process.env.OLLAMA_MODEL || "llama3.2:3b",
 
   // Template files
   templates: {
@@ -31,7 +31,7 @@ export const config = {
   },
 
   // Background template (used for all documents)
-  backgroundTemplate: "Untitled design.pdf",
+  backgroundTemplate: "Zaświadczenia wolontariat i praktyki.pdf",
 };
 
 /**

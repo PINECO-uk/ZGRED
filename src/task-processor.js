@@ -64,15 +64,16 @@ export async function processTask(taskInput) {
     if (task === 'internship') {
       const roleNormalized = employee.role?.toLowerCase() || '';
       const isValidRole = roleNormalized.includes('praktykant') ||
+                          roleNormalized.includes('praktyki') ||
                           roleNormalized.includes('stażysta') ||
                           roleNormalized.includes('intern') ||
                           roleNormalized.includes('staż');
 
       if (!isValidRole) {
         console.log(`[VALIDATION] ERROR: Invalid role for internship document: ${employee.role}`);
-        console.log(`[VALIDATION] Internship documents can only be generated for: praktykant, stażysta, intern`);
+        console.log(`[VALIDATION] Internship documents can only be generated for: praktykant, praktyki, stażysta, intern`);
         return createGenerationResult(false, task, {
-          error: `Dokument stażu/praktyki może być wygenerowany tylko dla osób z rolą: praktykant lub stażysta. Aktualna rola: ${employee.role || '(brak)'}`,
+          error: `Dokument stażu/praktyki może być wygenerowany tylko dla osób z rolą: praktykant, praktyki lub stażysta. Aktualna rola: ${employee.role || '(brak)'}`,
         });
       }
       console.log(`[VALIDATION] ✓ Role validated for internship document: ${employee.role}`);
@@ -125,6 +126,8 @@ export async function processTask(taskInput) {
         team: employee.team,
         mainTasks: employee.mainTasks,
         status: employee.status, // For active/inactive check
+        role: employee.role, // For volunteer vs praktykant/stazysta distinction
+        gender: employee.gender, // For gender-specific forms
         // For references - reference text
         referenceText: '',
         // For internship documents (new structure)
@@ -144,9 +147,11 @@ export async function processTask(taskInput) {
       console.log('[FALLBACK]   - evaluation: (empty)');
       console.log('[FALLBACK]   - etc.');
     } else {
-      // Add status to LLM-generated content as well
+      // Add status, role, and gender to LLM-generated content as well
       contentData.status = employee.status;
-      console.log('[LLM] Added employee status to LLM content');
+      contentData.role = employee.role;
+      contentData.gender = employee.gender;
+      console.log('[LLM] Added employee status, role, and gender to LLM content');
     }
 
     // Generate PDF

@@ -1,0 +1,73 @@
+version: "3.8"
+
+services:
+  # Ollama service for LLM generation
+  ollama:
+    image: ollama/ollama:latest
+    container_name: zgred-ollama
+    ports:
+      - "11435:11434"
+    volumes:
+      - ollama-data:/root/.ollama
+    networks:
+      - zgred-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:11434/api/tags"]
+      interval: 10s
+      timeout: 10s
+      retries: 10
+      start_period: 60s
+
+  # ZGRED Web Application
+  zgred-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: zgred-web
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./data:/workspace/data:ro
+      - ./templates:/workspace/templates:ro
+      - ./output:/workspace/output
+      - ./public:/workspace/public:ro
+      - ./src:/workspace/src:ro
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - OLLAMA_BASE_URL=http://ollama:11434
+      - OLLAMA_MODEL=llama3.2:3b
+    networks:
+      - zgred-network
+    depends_on:
+      ollama:
+        condition: service_healthy
+    restart: unless-stopped
+    command: npm run web
+
+  # Init service to pull Ollama model
+  ollama-init:
+    image: ollama/ollama:latest
+    container_name: zgred-ollama-init
+    networks:
+      - zgred-network
+    depends_on:
+      ollama:
+        condition: service_healthy
+    restart: "no"
+    entrypoint: /bin/sh
+    command: >
+      -c "
+      echo 'Pulling llama3.2:3b model...' &&
+      ollama pull llama3.2:3b &&
+      echo 'Model ready!'
+      "
+
+networks:
+  zgred-network:
+    driver: bridge
+
+volumes:
+  ollama-data:
+    driver: local

@@ -1,0 +1,250 @@
+{
+  "teams": {
+    "Blog & Content Masters": {
+      "description": "Zespół Blog & Content Masters w głównej mierze dba o poprawność i jakość treści zamieszczanych na blogu LEVEL UP. Poruszamy ważne tematy związane z samorozwojem oraz kwestiami społecznymi. Dokładamy starań, aby nasze teksty motywowały naszych odbiorców do aktywnego działania oraz poszerzały ich horyzonty.",
+      "mainActivities": [
+        "Korekta i pisanie artykułów zgodnie z zasadami SEO",
+        "Szukanie słów kluczowych z wykorzystaniem Google Keyword Planner",
+        "Publikowanie wpisów na Wordpress",
+        "Tworzenie listy tematów na kolejne treści",
+        "Dzielenie się zdobytą wiedzą z zakresu copywritingu i marketingu",
+        "Współpraca z zespołem marketingowym - korekta tworzonych treści (newsletter, poradniki)",
+        "Promowanie bloga LEVEL UP"
+      ]
+    },
+    "Board Assistance": {
+      "description": "Zespół Board Assistance ściśle współpracuje z Zarządem i wspiera go we wszystkich działaniach, którymi się zajmuje. Należące do nas zadania są wszechstronne i często wymagają dynamicznego działania w krótkim czasie.",
+      "mainActivities": [
+        "Przygotowywanie treści umów, uchwał i planów spotkań",
+        "Przygotowywanie sprawozdań i uzupełnianie raportów",
+        "Przygotowywanie opisów księgowych",
+        "Praca z dokumentacją projektową i wewnętrzną",
+        "Wyszukiwanie informacji do wniosków grantowych",
+        "Reprezentowanie Zarządu na spotkaniach networkingowych oraz innych wydarzeniach"
+      ]
+    },
+    "E-Volunteering & Team Development Masters": {
+      "description": "Głównymi obszarami działania zespołu są rekrutacja i onboarding nowych osób współpracujących (w formie wolontariatu lub praktyk) oraz koordynacja i tworzenie możliwości szkoleniowych dla innych zespołów w Stowarzyszeniu. Dodatkowo współtworzymy dokumenty wewnętrzne, materiały warsztatowe oraz odpowiadamy za komunikację z całym zespołem LEVEL UP.",
+      "mainActivities": [
+        "Tworzenie i rozsyłanie ogłoszeń rekrutacyjnych",
+        "Tworzenie materiałów szkoleniowych",
+        "Koordynacja i prowadzenie szkoleń wewnętrznych",
+        "Koordynacja procesu onboardingowego",
+        "Szukanie zewnętrznych możliwości szkoleniowych dla członków zespołów",
+        "Tworzenie dokumentów wewnętrznych (umów, zaświadczeń)",
+        "Przygotowanie i obsługa stanowiska na Targach Pracy, NGO",
+        "Komunikacja z całym zespołem Stowarzyszenia"
+      ]
+    },
+    "Integration Masters": {
+      "description": "Integration Masters to zespół, który dba o integrację, rozwój i dobrą atmosferę wśród członków LEVEL UP. Organizujemy wydarzenia, akcje i inicjatywy, które pomagają zespołom się poznać, wymieniać doświadczenia i wspólnie działać. Naszym celem jest budowanie społeczności opartej na zaangażowaniu, wsparciu i dobrej energii.",
+      "mainActivities": [
+        "Tworzenie i planowanie wydarzeń integracyjnych (gier, zabaw, spotkań tematycznych)",
+        "Prowadzenie wydarzeń integracyjnych (również w języku angielskim)",
+        "Dbanie o aktywny udział uczestników wydarzeń",
+        "Research pomysłów na integracje",
+        "Research miejsc, gdzie mogłyby odbywać się stacjonarne wydarzenia",
+        "Tworzenie formularzy zgłoszeniowych do uczestnictwa w wydarzeniach",
+        "Kontakt mailowy z zewnętrznymi usługodawcami (catering, hotel)"
+      ]
+    },
+    "Graphic Masters": {
+      "description": "Zespół Graphics Masters dba aby LEVEL UP pięknie prezentował się od każdej strony. Tworzymy kolorowe i angażujące grafiki do mediów społecznościowych, certyfikatów, plakatów i innych materiałów. Nasza kreatywność pozwala wizualnie wyrazić misję i wartości Stowarzyszenia.",
+      "mainActivities": [
+        "Przygotowywanie grafik do postów na social media (Facebook, LinkedIn, Instagram)",
+        "Tworzenie grafik podsumowujących projekty",
+        "Projektowanie grafik promujących wydarzenia LEVEL UP",
+        "Tworzenie certyfikatów, dyplomów, kartek świątecznych",
+        "Projektowanie plakatów, zaproszeń, logotypów projektów",
+        "Projektowanie stopek mailowych dla członków organizacji"
+      ]
+    },
+    "Inclusion Masters": {
+      "description": "Działamy w nurcie DEI (Diversity, Equity, Inclusion). Nasze cele to szerzenie akceptacji dla ludzkiej różnorodności, wyrównywanie szans oraz wspieranie osób (naszych wolontariuszy, uczestników projektów) w trudnościach wynikających z ich niepełnosprawności, neuroatypowości, kondycji psychicznej lub statusu socjoekonomicznego.",
+      "mainActivities": [
+        "Tworzenie publikacji w temacie różnorodności i włączania",
+        "Realizacja projektów włączających dla osób z barierami",
+        "Organizacja szkoleń i eventów szerzących wiedzę na temat DEI",
+        "Współtworzenie oferty indywidualnego poradnictwa i wsparcia dla osób z niepełnosprawnościami",
+        "Realizacja programu Buddies - programu ułatwiającego osobom z trudnościami włączenie się w działania Stowarzyszenia"
+      ]
+    },
+    "International Masters": {
+      "description": "Rolą naszego zespołu jest zapewnianie wsparcia w różnych dziedzinach, takich jak organizacja wydarzeń, szkoleń, tworzenie projektów, grafik, tłumaczeń czy badań. International Masters działają w oparciu o język angielski. Poszukujemy osób, dla których język polski nie jest językiem ojczystym.",
+      "mainActivities": [
+        "Tworzenie szkoleń z języków obcych (angielski, włoski, hiszpański)",
+        "Tworzenie treści blogowych zgodnych z SEO",
+        "Realizacja eventów lokalnych i online",
+        "Prowadzenie procesu rekrutacyjnego",
+        "Tworzenie badań ewaluacyjnych w celu usprawnienia działań",
+        "Tworzenie materiałów i narzędzi do wykorzystania w projektach",
+        "Tworzenie nowych inicjatyw"
+      ]
+    },
+    "Local Project Management Masters": {
+      "description": "W tym zespole zajmujemy się koordynacją projektów o charakterze lokalnym (EKS i KA3) oraz krajowym (NOWEFIO), tworząc i realizując wydarzenia, które mają pozytywny wpływ na naszą społeczność. Pomagamy w organizacji, koordynacji oraz obsłudze wielu wydarzeń realizowanych w ramach projektów LEVEL UP, takich jak szkolenia, konferencje, wymiany młodzieżowe, spotkania z partnerami zagranicznymi czy wizyty studyjne.",
+      "mainActivities": [
+        "Rekrutacja i wybór uczestników do projektów",
+        "Komunikacja z uczestnikami oraz partnerami Stowarzyszenia",
+        "Tworzenie lub edycja dokumentów projektowych (regulaminy uczestnictwa, listy obecności)",
+        "Prowadzenie spotkań informacyjno-zapoznawczych z uczestnikami",
+        "Raportowanie postępów",
+        "Organizacja wydarzeń w ramach projektów EKS",
+        "Koordynacja wydarzeń lokalnych"
+      ]
+    },
+    "Marketing Masters": {
+      "description": "Zespół Marketing Masters dba o zewnętrzny wizerunek LEVEL UP. Odpowiadamy za strategię komunikacji na mediach społecznościowych, tworzymy treści i kampanie, które efektywnie przekazują cel i misję Stowarzyszenia. Działamy w trzech obszarach: Social Media Ninjas, TikTok Creators oraz Youtube Creators.",
+      "mainActivities": [
+        "Planowanie i współtworzenie contentu (posty, newsletter, blog, wywiady, reelsy, instastory)",
+        "Współpraca z zespołem graficznym",
+        "Prowadzenie komunikacji na Social Media (odpowiadanie na komentarze/pytania/opinie)",
+        "Wsparcie działań eventowych - targów, szkół, bibliotek",
+        "Kontakt z influencerami",
+        "Tworzenie angażujących treści multimedialnych na TikToku",
+        "Projektowanie scenariuszy filmów na Youtube",
+        "Operowanie kamerą, nagrywanie wydarzeń/wywiadów",
+        "Montowanie materiałów audiowizualnych"
+      ]
+    },
+    "Social Media Ninjas": {
+      "description": "Tutaj zajmujemy się social media oraz content marketingiem. Jesteśmy chodzącą burzą mózgów, strategami, a inspiracji szukamy w codzienności. Działamy także w influencer marketingu.",
+      "mainActivities": [
+        "Planowanie i współtworzenie contentu (posty, newsletter, blog, wywiady, reelsy, instastory)",
+        "Współpraca z zespołem graficznym",
+        "Prowadzenie komunikacji na Social Media",
+        "Wsparcie działań eventowych",
+        "Kontakt z influencerami"
+      ]
+    },
+    "TikTok Creators": {
+      "description": "Śledzimy aktualne trendy, planujemy, nagrywamy, montujemy i wrzucamy. Rozumiemy potęgę TikToka, czerpiemy z niej i wciąż poszukujemy nowych możliwości poszerzania zasięgów.",
+      "mainActivities": [
+        "Tworzenie angażujących treści multimedialnych na TikToku",
+        "Regularne nagrywanie, edycja i publikacja filmików",
+        "Moderacja konta na TikToku",
+        "Organizacja i przeprowadzanie konkursów na TikToku",
+        "Śledzenie trendów i wykorzystywanie ich w działaniach"
+      ]
+    },
+    "Youtube Creators": {
+      "description": "Stawiamy na nieustanny rozwój i wykorzystywanie potencjału Youtube. Lubimy się z kamerą, mamy duszę reporterów i scenarzystów, a montaż filmów nas nie przeraża.",
+      "mainActivities": [
+        "Projektowanie scenariuszy filmów na Youtube",
+        "Operowanie kamerą, nagrywanie wydarzeń/wywiadów",
+        "Tworzenie reportaży/artykułów/prowadzenie programu",
+        "Montowanie materiałów audiowizualnych",
+        "Opracowanie graficzne do montażu",
+        "Publikowanie treści i odpowiadanie na komentarze"
+      ]
+    },
+    "Project & Partnerships": {
+      "description": "Ten zespół zajmuje się przede wszystkim wyszukiwaniem możliwości współpracy i partnerów do dalszych inicjatyw LEVEL UP (w Polsce i za granicą). Spotykamy się z potencjalnymi partnerami, nawiązujemy współpracę, dbamy o dobre stosunki. Znamy się również na procedurach składania wniosków projektowych.",
+      "mainActivities": [
+        "Szukanie możliwości nowych współprac",
+        "Pozyskiwanie partnerów do nowych inicjatyw LEVEL UP",
+        "Pisanie i składanie wniosków projektowych pod różne fundusze",
+        "Spotkania z partnerami (głównie online)",
+        "Poszukiwania nowych sponsorów"
+      ]
+    },
+    "Projects & Partnership Masters": {
+      "description": "Ten zespół zajmuje się przede wszystkim wyszukiwaniem możliwości współpracy i partnerów do dalszych inicjatyw LEVEL UP (w Polsce i za granicą). Spotykamy się z potencjalnymi partnerami, nawiązujemy współpracę, dbamy o dobre stosunki. Znamy się również na procedurach składania wniosków projektowych.",
+      "mainActivities": [
+        "Szukanie możliwości nowych współprac",
+        "Pozyskiwanie partnerów do nowych inicjatyw LEVEL UP",
+        "Pisanie i składanie wniosków projektowych pod różne fundusze",
+        "Spotkania z partnerami (głównie online)",
+        "Poszukiwania nowych sponsorów"
+      ]
+    },
+    "Project Management Masters": {
+      "description": "W naszym zespole zajmujemy się przede wszystkim koordynacją wymian i szkoleń międzynarodowych finansowanych z programu Erasmus+ (jako główny organizator lub jako partner). Są to wyjazdy, w trakcie których osoby uczestniczące z różnych krajów spotykają się, żeby móc poznać nawzajem swoje kultury i zwyczaje, nabyć nowe kompetencje związane z tematem projektu.",
+      "mainActivities": [
+        "Rekrutacja i wybór uczestników i uczestniczek do projektów",
+        "Komunikacja z osobami uczestniczącymi w projektach oraz z partnerami",
+        "Delegowanie zadań w ramach projektu i pilnowanie wykonania oraz terminowości",
+        "Tworzenie lub edycja dokumentów projektowych (regulaminy uczestnictwa, plany podróży)",
+        "Prowadzenie spotkań informacyjno-zapoznawczych z uczestnikami projektów",
+        "Raportowanie postępów Team Leaderowi/ce i/lub głównym organizatorom"
+      ]
+    },
+    "Translation Masters": {
+      "description": "Osoby działające w tym zespole zajmują się głównie tłumaczeniem różnego rodzaju treści przygotowanych przez inne zespoły. Nasz proces ma dwustopniową weryfikację, co oznacza, że każde zrobione tłumaczenie przechodzi przez korektę i weryfikację. Pracujemy z językiem angielskim, rosyjskim oraz hiszpańskim.",
+      "mainActivities": [
+        "Tłumaczenie zawartości strony internetowej (opisy projektów, treści zakładek, wspomnienia z wymian)",
+        "Tłumaczenie dokumentów wewnętrznych (umowy, regulaminy, ogłoszenia)",
+        "Tłumaczenie dokumentacji projektowej (zgody, regulaminy, formularze zgłoszeniowe)",
+        "Korekta i weryfikacja tłumaczeń"
+      ]
+    },
+    "Research Masters": {
+      "description": "Zespół Research wspiera LEVEL UP wszędzie tam, gdzie trzeba wyszukać i zanalizować informacje. Dbamy o merytorykę projektów, ale pomagamy też innym zespołom w sprawach wewnętrznych. Poza tym prowadzimy własne projekty badawcze, by rozwijać nasze umiejętności i zaspokoić głód wiedzy.",
+      "mainActivities": [
+        "Wyszukiwanie i analiza danych",
+        "Przygotowywanie i rozprowadzanie formularzy ankiet",
+        "Wsparcie wewnętrzne pozostałych zespołów",
+        "Tworzenie raportów",
+        "Prowadzenie projektów badawczych"
+      ]
+    },
+    "Web Masters": {
+      "description": "Zespół Web Masters dba o odpowiedni wygląd i użyteczność strony www, która jest wizytówką organizacji. Stronę tworzymy nie tylko pod kątem technicznym, ale również dbamy o merytoryczność contentu, ponieważ jako organizacja pragniemy być transparentni w tym co robimy.",
+      "mainActivities": [
+        "Tworzenie stron i podstron projektowych przy pomocy Wordpressa",
+        "Dbanie o systematyczną aktualizację i odpowiednie działanie treści na stronie",
+        "Wspieranie zespołu blogowego w kwestiach technicznych (SEO i czytelność)",
+        "Optymalizacja stron (instalowanie wtyczek, dopracowanie UX/UI, analiza danych)",
+        "Tworzenie Google Ads podjętych inicjatyw projektowych",
+        "Optymalizacja pod kątem dostępności strony"
+      ]
+    },
+    "Blog and Content Masters": {
+      "description": "Zespół Blog & Content Masters w głównej mierze dba o poprawność i jakość treści zamieszczanych na blogu LEVEL UP. Poruszamy ważne tematy związane z samorozwojem oraz kwestiami społecznymi. Dokładamy starań, aby nasze teksty motywowały naszych odbiorców do aktywnego działania oraz poszerzały ich horyzonty.",
+      "mainActivities": [
+        "Korekta i pisanie artykułów zgodnie z zasadami SEO",
+        "Szukanie słów kluczowych z wykorzystaniem Google Keyword Planner",
+        "Publikowanie wpisów na Wordpress",
+        "Tworzenie listy tematów na kolejne treści",
+        "Dzielenie się zdobytą wiedzą z zakresu copywritingu i marketingu",
+        "Współpraca z zespołem marketingowym - korekta tworzonych treści (newsletter, poradniki)",
+        "Promowanie bloga LEVEL UP"
+      ]
+    },
+    "E-volunteering and Team Development": {
+      "description": "Głównymi obszarami działania zespołu są rekrutacja i onboarding nowych osób współpracujących (w formie wolontariatu lub praktyk) oraz koordynacja i tworzenie możliwości szkoleniowych dla innych zespołów w Stowarzyszeniu. Dodatkowo współtworzymy dokumenty wewnętrzne, materiały warsztatowe oraz odpowiadamy za komunikację z całym zespołem LEVEL UP.",
+      "mainActivities": [
+        "Tworzenie i rozsyłanie ogłoszeń rekrutacyjnych",
+        "Tworzenie materiałów szkoleniowych",
+        "Koordynacja i prowadzenie szkoleń wewnętrznych",
+        "Koordynacja procesu onboardingowego",
+        "Szukanie zewnętrznych możliwości szkoleniowych dla członków zespołów",
+        "Tworzenie dokumentów wewnętrznych (umów, zaświadczeń)",
+        "Przygotowanie i obsługa stanowiska na Targach Pracy, NGO",
+        "Komunikacja z całym zespołem Stowarzyszenia"
+      ]
+    },
+    "Events and External Trainings Masters": {
+      "description": "Integration Masters to zespół, który dba o integrację, rozwój i dobrą atmosferę wśród członków LEVEL UP. Organizujemy wydarzenia, akcje i inicjatywy, które pomagają zespołom się poznać, wymieniać doświadczenia i wspólnie działać. Naszym celem jest budowanie społeczności opartej na zaangażowaniu, wsparciu i dobrej energii.",
+      "mainActivities": [
+        "Tworzenie i planowanie wydarzeń integracyjnych (gier, zabaw, spotkań tematycznych)",
+        "Prowadzenie wydarzeń integracyjnych (również w języku angielskim)",
+        "Dbanie o aktywny udział uczestników wydarzeń",
+        "Research pomysłów na integracje",
+        "Research miejsc, gdzie mogłyby odbywać się stacjonarne wydarzenia",
+        "Tworzenie formularzy zgłoszeniowych do uczestnictwa w wydarzeniach",
+        "Kontakt mailowy z zewnętrznymi usługodawcami (catering, hotel)"
+      ]
+    },
+    "Project and Partnership Masters": {
+      "description": "Ten zespół zajmuje się przede wszystkim wyszukiwaniem możliwości współpracy i partnerów do dalszych inicjatyw LEVEL UP (w Polsce i za granicą). Spotykamy się z potencjalnymi partnerami, nawiązujemy współpracę, dbamy o dobre stosunki. Znamy się również na procedurach składania wniosków projektowych.",
+      "mainActivities": [
+        "Szukanie możliwości nowych współprac",
+        "Pozyskiwanie partnerów do nowych inicjatyw LEVEL UP",
+        "Pisanie i składanie wniosków projektowych pod różne fundusze",
+        "Spotkania z partnerami (głównie online)",
+        "Poszukiwania nowych sponsorów"
+      ]
+    }
+  }
+}
