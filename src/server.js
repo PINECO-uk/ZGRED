@@ -47,8 +47,9 @@ app.get("/api/volunteers", (req, res) => {
         startDate: emp["Data rozpoczęcia"] || "",
         endDate: emp["Data zakończenia"] || "",
         status: emp["Status"] || "",
-        mainTasks: emp["Zakres obowiązków"] || "",
-        type: emp["Rodzaj"] || "",
+        mainTasks: emp["Obszar dzialan"] || "",
+        role: emp["Rodzaj"] || "",
+        type: emp["Rodzaj"] || "", // Keep for backwards compatibility
       };
     });
 
@@ -86,8 +87,9 @@ app.get("/api/volunteers/search", (req, res) => {
           startDate: emp["Data rozpoczęcia"] || "",
           endDate: emp["Data zakończenia"] || "",
           status: emp["Status"] || "",
-          mainTasks: emp["Zakres obowiązków"] || "",
-          type: emp["Rodzaj"] || "",
+          mainTasks: emp["Obszar dzialan"] || "",
+          role: emp["Rodzaj"] || "",
+          type: emp["Rodzaj"] || "", // Keep for backwards compatibility
         };
       })
       .filter(

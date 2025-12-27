@@ -2,6 +2,7 @@
   "name": "Claude Code Sandbox",
   "build": {
     "dockerfile": "Dockerfile",
+    "context": ".",
     "args": {
       "TZ": "${localEnv:TZ:America/Los_Angeles}",
       "CLAUDE_CODE_VERSION": "latest",
@@ -13,6 +14,13 @@
     "--cap-add=NET_ADMIN",
     "--cap-add=NET_RAW"
   ],
+  "forwardPorts": [3000],
+  "portsAttributes": {
+    "3000": {
+      "label": "ZGRED Web UI",
+      "onAutoForward": "notify"
+    }
+  },
   "customizations": {
     "vscode": {
       "extensions": [
@@ -23,7 +31,8 @@
       ],
       "settings": {
         "editor.formatOnSave": true,
-        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        
+      
         "editor.codeActionsOnSave": {
           "source.fixAll.eslint": "explicit"
         },

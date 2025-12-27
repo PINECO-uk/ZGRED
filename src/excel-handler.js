@@ -61,6 +61,7 @@ export function findEmployee(name, surname) {
       team: String(employee['Team - od 1.08.2022'] || employee.team || ''),
       mainTasks: String(employee['Obszar dzialan'] || employee.main_tasks || ''),
       role: String(employee['Rodzaj'] || employee.role || ''),
+      gender: String(employee['Płeć'] || employee['Plec'] || employee.gender || ''),
       email: String(employee['adres e-mail'] || ''),
       phone: String(employee['Numer telefonu'] || ''),
       status: String(employee['Status'] || ''),

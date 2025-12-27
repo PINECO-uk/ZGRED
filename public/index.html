@@ -12,7 +12,7 @@
       <header class="header">
         <div class="logo">
           <h1>ZGRED</h1>
-          <p class="tagline">Generator Dokumentów NGO</p>
+          <p class="tagline">Generator Dokumentów dla LEVEL UP</p>
         </div>
       </header>
 
@@ -39,10 +39,9 @@
 
         <!-- Volunteer Search -->
         <section class="card">
-          <h2>Dane wolontariusza</h2>
+          <h2>Wyszukaj współpracownika</h2>
           <div class="search-section">
             <div class="form-group">
-              <label for="volunteerSearch">Wyszukaj wolontariusza</label>
               <div class="search-wrapper">
                 <input
                   type="text"
@@ -56,6 +55,11 @@
               </div>
               <div id="searchResults" class="search-results"></div>
             </div>
+            <div style="text-align: center; margin-top: 12px;">
+              <button type="button" id="showAllVolunteersTop" class="btn btn-link">
+                Pokaż wszystkich współpracowników
+              </button>
+            </div>
           </div>
 
           <!-- Volunteer Info Display -->
@@ -64,6 +68,10 @@
               <div class="info-item">
                 <label>Imię i nazwisko</label>
                 <span id="displayName">-</span>
+              </div>
+              <div class="info-item">
+                <label>Rola</label>
+                <span id="displayRole">-</span>
               </div>
               <div class="info-item">
                 <label>Zespół</label>
@@ -130,7 +138,7 @@
       <div id="volunteersModal" class="modal hidden">
         <div class="modal-content">
           <div class="modal-header">
-            <h2>Lista wolontariuszy</h2>
+            <h2>Lista współpracowników</h2>
             <button class="modal-close" id="closeModal">&times;</button>
           </div>
           <div class="modal-body">
@@ -147,9 +155,9 @@
 
       <!-- Footer -->
       <footer class="footer">
-        <p>ZGRED &copy; 2025 - Generator Dokumentów NGO dla LEVEL UP</p>
+        <p>ZGRED &copy; 2025 - Generator Dokumentów dla LEVEL UP</p>
         <button type="button" id="showAllVolunteers" class="btn btn-link">
-          Pokaż wszystkich wolontariuszy
+          Pokaż wszystkich współpracowników
         </button>
       </footer>
     </div>

@@ -24,6 +24,7 @@ const volunteersModal = document.getElementById('volunteersModal');
 const volunteersList = document.getElementById('volunteersList');
 const modalSearch = document.getElementById('modalSearch');
 const showAllVolunteers = document.getElementById('showAllVolunteers');
+const showAllVolunteersTop = document.getElementById('showAllVolunteersTop');
 const closeModal = document.getElementById('closeModal');
 
 // Document type labels
@@ -78,6 +79,7 @@ function setupEventListeners() {
 
   // Modal
   showAllVolunteers.addEventListener('click', openModal);
+  showAllVolunteersTop.addEventListener('click', openModal);
   closeModal.addEventListener('click', closeModalHandler);
   volunteersModal.addEventListener('click', (e) => {
     if (e.target === volunteersModal) closeModalHandler();
@@ -144,6 +146,23 @@ function displaySearchResults(results) {
   searchResults.classList.add('show');
 }
 
+// Map role codes to readable names
+function getRoleName(role) {
+  const roleMap = {
+    'wolontariat': 'Wolontariusz',
+    'wolontariusz': 'Wolontariusz',
+    'staz': 'Stażysta',
+    'stazysta': 'Stażysta',
+    'praktyki': 'Praktykant',
+    'praktykant': 'Praktykant'
+  };
+
+  if (!role) return '-';
+
+  const roleLower = role.toLowerCase().trim();
+  return roleMap[roleLower] || role;
+}
+
 // Select a volunteer
 function selectVolunteer(volunteer) {
   selectedVolunteer = volunteer;
@@ -151,6 +170,7 @@ function selectVolunteer(volunteer) {
 
   // Update display
   document.getElementById('displayName').textContent = volunteer.name || '-';
+  document.getElementById('displayRole').textContent = getRoleName(volunteer.role);
   document.getElementById('displayTeam').textContent = volunteer.team || '-';
   document.getElementById('displayStartDate').textContent = volunteer.startDate || '-';
   document.getElementById('displayEndDate').textContent = volunteer.endDate || '-';

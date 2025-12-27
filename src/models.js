@@ -29,6 +29,7 @@ export const EmployeeRecordSchema = z.object({
   team: z.string(),
   mainTasks: z.string(),
   role: z.string().optional(),
+  gender: z.string().optional(), // 'K' for female, 'M' for male
 });
 
 // References output schema

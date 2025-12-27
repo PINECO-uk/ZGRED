@@ -1,10 +1,34 @@
 ## Description
 
-Ai agent to help Non profit organization to create:
+AI agent system to help Non profit organization create professional documents:
 
-- refereneces
-- certificates
-- internship documents
+- **References** - detailed volunteer/intern references (3-4 paragraphs)
+- **Certificates** - concise work certificates (2-3 sentences)
+- **Internship evaluations** - comprehensive internship assessments (5 sections)
+
+## 🤖 AI Model
+
+The application uses **Qwen 2.5:7b** by default - an advanced language model optimized for:
+- ✅ High-quality Polish language generation
+- ✅ Professional document creation
+- ✅ Accurate grammar and case declension
+- ✅ Context understanding and instruction following
+
+**Quick start with model:**
+```bash
+# Download the model (first time only)
+ollama pull qwen2.5:7b
+
+# Or use the provided script
+./download-qwen.sh
+```
+
+**Alternative models:**
+- `qwen2.5:3b` - faster, smaller (2GB RAM)
+- `qwen2.5:14b` - higher quality (9GB RAM)
+- `llama3.2:3b` - previous default
+
+See [QWEN-SETUP-GUIDE.md](QWEN-SETUP-GUIDE.md) for detailed model configuration.
 
 ## Components
 

@@ -141,41 +141,56 @@ async function createDocumentWithBackground() {
 }
 
 /**
- * Draw text on page with word wrapping
+ * Draw text on page with word wrapping and paragraph support
  * @param {PDFPage} page - PDF page
- * @param {string} text - Text to draw
+ * @param {string} text - Text to draw (can include \n\n for paragraphs)
  * @param {number} x - X position
  * @param {number} y - Y position
  * @param {object} options - Drawing options
  * @returns {number} - New Y position after text
  */
 function drawWrappedText(page, text, x, y, options) {
-  const { font, size = 11, maxWidth = 450, lineHeight = 14, color = rgb(0, 0, 0) } = options;
+  const { font, size = 11, maxWidth = 450, lineHeight = 14, color = rgb(0, 0, 0), paragraphSpacing = 10 } = options;
 
   if (!text || text.trim() === '') {
     return y - lineHeight;
   }
 
-  const words = text.split(' ');
-  let line = '';
   let currentY = y;
 
-  for (const word of words) {
-    const testLine = line + (line ? ' ' : '') + word;
-    const testWidth = font.widthOfTextAtSize(testLine, size);
+  // Split text into paragraphs (separated by \n\n)
+  const paragraphs = text.split('\n\n');
 
-    if (testWidth > maxWidth && line) {
-      page.drawText(line, { x, y: currentY, size, font, color });
-      line = word;
-      currentY -= lineHeight;
-    } else {
-      line = testLine;
+  for (let i = 0; i < paragraphs.length; i++) {
+    const paragraph = paragraphs[i].trim();
+    if (!paragraph) continue;
+
+    // Process each paragraph with word wrapping
+    const words = paragraph.split(' ');
+    let line = '';
+
+    for (const word of words) {
+      const testLine = line + (line ? ' ' : '') + word;
+      const testWidth = font.widthOfTextAtSize(testLine, size);
+
+      if (testWidth > maxWidth && line) {
+        page.drawText(line, { x, y: currentY, size, font, color });
+        line = word;
+        currentY -= lineHeight;
+      } else {
+        line = testLine;
+      }
     }
-  }
 
-  if (line) {
-    page.drawText(line, { x, y: currentY, size, font, color });
-    currentY -= lineHeight;
+    if (line) {
+      page.drawText(line, { x, y: currentY, size, font, color });
+      currentY -= lineHeight;
+    }
+
+    // Add paragraph spacing between paragraphs (but not after the last one)
+    if (i < paragraphs.length - 1) {
+      currentY -= paragraphSpacing;
+    }
   }
 
   return currentY;
@@ -240,21 +255,28 @@ export async function generateReferences(data) {
 
   y -= 25;
 
-  // Reference text - one joined paragraph from AI
+  // Reference text - multiple paragraphs from AI (separated by \n\n)
   if (data.referenceText && data.referenceText.trim() !== '') {
     console.log(`[PDF-REF] Adding reference text (${data.referenceText.length} chars)...`);
-    y = drawWrappedText(page, data.referenceText, 70, y, { font, size: 11, maxWidth: 470, lineHeight: 16 });
+    y = drawWrappedText(page, data.referenceText, 70, y, {
+      font,
+      size: 11,
+      maxWidth: 470,
+      lineHeight: 16,
+      paragraphSpacing: 16  // Extra spacing between paragraphs
+    });
   } else {
     console.log('[PDF-REF] WARNING: No reference text to add - field is empty!');
   }
 
-  // "Z poważaniem," in bottom right corner (1 cm from edge)
+  // "Z poważaniem," 3 line breaks below the main text
   console.log('[PDF-REF] Adding signature...');
+  y -= 16 * 3; // 3 akapity (line breaks) below the text
   const regards = 'Z poważaniem,';
   const regardsWidth = font.widthOfTextAtSize(regards, 11);
   page.drawText(regards, {
     x: 525 - regardsWidth,
-    y: 28.35,
+    y: y,
     size: 11,
     font,
     color: rgb(0, 0, 0),
@@ -341,11 +363,41 @@ export async function generateCert(data) {
   // Check if volunteer is active or inactive based on status
   const isActive = data.status && data.status.toLowerCase().includes('aktywny') && !data.status.toLowerCase().includes('nieaktywny');
 
+  // Determine if this is a praktykant/stazysta or wolontariusz
+  const roleLower = (data.role || '').toLowerCase();
+  const isPraktykant = roleLower.includes('praktyk') || roleLower.includes('staz') || roleLower.includes('intern');
+
+  // Gender-specific verb forms
+  const isFemale = data.gender === 'K';
+  const wasPast = isFemale ? 'była' : 'był';
+  const workedPast = isFemale ? 'Działała' : 'Działał';
+  const isMember = isFemale ? 'jest aktywną członkinią' : 'jest aktywnym członkiem';
+  const joined = isFemale ? 'Dołączyła ona' : 'Dołączył on';
+  const joinedPast = isFemale ? 'Dołączyła' : 'Dołączył';
+  const cooperated = isFemale ? 'współpracowała' : 'współpracował';
+  const participating = isFemale ? 'uczestnicząc' : 'uczestnicząc'; // Same for both genders
+
   let description;
-  if (isActive) {
-    description = `jest aktywnym członkiem zespołu ${data.team} i działa w ramach programu e-wolontariatu, który wspiera misję społeczną LEVEL UP oraz kompetencje społeczno-zawodowe młodych ludzi. Współpraca rozpoczęła się ${data.startDate}.`;
+  if (isPraktykant) {
+    // For praktykant/stazysta - use "praktyki zdalnych" instead of "e-wolontariatu"
+    if (isActive) {
+      // Active praktykant - present tense
+      const cooperatesPresent = isFemale ? 'współpracuje' : 'współpracuje'; // Same for both
+      const isInGroup = isFemale ? 'Jest członkinią' : 'Jest członkiem';
+      description = `${cooperatesPresent} ze Stowarzyszeniem LEVEL UP, uczestnicząc w programie praktyk zdalnych, który wspiera misję społeczną LEVEL UP oraz kompetencje społeczno-zawodowe młodych ludzi. ${isInGroup} grupy ${data.team}. Współpraca rozpoczęła się ${data.startDate}.`;
+    } else {
+      // Inactive praktykant - past tense
+      description = `${cooperated} ze Stowarzyszeniem LEVEL UP od ${data.startDate} do ${data.endDate} r., ${participating} w programie praktyk zdalnych, który wspiera misję społeczną LEVEL UP oraz kompetencje społeczno-zawodowe młodych ludzi. ${joinedPast} do grupy ${data.team}.`;
+    }
   } else {
-    description = `był(a) aktywnym członkiem zespołu ${data.team} w okresie od ${data.startDate} do ${data.endDate}. Działał(a) w ramach programu e-wolontariatu, który wspiera misję społeczną LEVEL UP oraz kompetencje społeczno-zawodowe młodych ludzi.`;
+    // For wolontariusz - use "e-wolontariatu"
+    if (isActive) {
+      // Active volunteer - present tense
+      description = `${isMember} zespołu ${data.team} i działa w ramach programu e-wolontariatu, który wspiera misję społeczną LEVEL UP oraz kompetencje społeczno-zawodowe młodych ludzi. Współpraca rozpoczęła się ${data.startDate}.`;
+    } else {
+      // Inactive volunteer - past tense
+      description = `${cooperated} ze Stowarzyszeniem LEVEL UP od ${data.startDate} do ${data.endDate} r., ${participating} w programie e-wolontariatu, który wspiera misję społeczną LEVEL UP oraz kompetencje społeczno-zawodowe młodych ludzi. ${joinedPast} do grupy ${data.team}.`;
+    }
   }
   y = drawWrappedText(page, description, 70, y, { font, size: 12, maxWidth: 470, lineHeight: 18 });
   y -= 25;
@@ -358,13 +410,14 @@ export async function generateCert(data) {
     console.log('[PDF-CERT] WARNING: No additional description to add - field is empty!');
   }
 
-  // "Z poważaniem," in bottom right corner (1 cm from edge)
+  // "Z poważaniem," 3 line breaks below the main text
   console.log('[PDF-CERT] Adding signature...');
+  y -= 18 * 3; // 3 akapity (line breaks) below the text (lineHeight for main text is 18)
   const regards = 'Z poważaniem,';
   const regardsWidth = font.widthOfTextAtSize(regards, 11);
   page.drawText(regards, {
     x: width - 70 - regardsWidth,
-    y: 28.35,
+    y: y,
     size: 11,
     font,
     color: rgb(0, 0, 0),
@@ -458,19 +511,19 @@ export async function generateInternship(data) {
     // Check if we need to add a new page
     if (y < 100) {
       console.log('[PDF-INT] Adding new page...');
-      pdfDoc.addPage([595.28, 841.89]);
+      page = pdfDoc.addPage([595.28, 841.89]);
       y = 750;
     }
   }
 
-  // "Z poważaniem," in bottom right corner (1 cm from edge) on first page
+  // "Z poważaniem," 3 line breaks below the last section
   console.log('[PDF-INT] Adding signature...');
-  const firstPage = pdfDoc.getPages()[0];
+  y -= 13 * 3; // 3 akapity (line breaks) below the text (lineHeight for sections is 13)
   const regards = 'Z poważaniem,';
   const regardsWidth = font.widthOfTextAtSize(regards, 11);
-  firstPage.drawText(regards, {
+  page.drawText(regards, {
     x: width - 70 - regardsWidth,
-    y: 28.35,
+    y: y,
     size: 11,
     font,
     color: rgb(0, 0, 0),
